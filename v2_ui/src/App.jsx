@@ -187,9 +187,11 @@ export default function App() {
               <tr className="bg-slate-50 border-b border-slate-200">
                 <th className="text-left p-3 font-bold text-slate-900 w-24">Month</th>
                 <th className="text-right p-3 font-semibold text-slate-700">OTA ASP</th>
+                <th className="text-right p-3 font-semibold text-slate-700 w-20">Fare</th>
                 <th className="text-right p-3 font-semibold text-slate-700">Ceiling Price</th>
-                <th className="text-right p-3 font-semibold text-slate-700">Gap (₹)</th>
-                <th className="text-right p-3 font-semibold text-slate-700">Gap (%)</th>
+                <th className="text-right p-3 font-semibold text-slate-700">Extra (₹)</th>
+                <th className="text-right p-3 font-semibold text-slate-700">Payable Amount</th>
+                <th className="text-right p-3 font-semibold text-slate-700">Discount (%)</th>
               </tr>
             </thead>
             <tbody>
@@ -198,10 +200,14 @@ export default function App() {
                 const data = historicalData[type.id];
                 if (!data) return null;
                 const asp = data.asp[i] || 0;
+                const fare = type.fare;
                 const ceiling = type.fare + type.cap;
                 const isLaunched = asp > 0;
-                const gapRs = ceiling - asp;
-                const gapPct = ceiling > 0 ? (gapRs / ceiling * 100) : 0;
+
+                // New formulas
+                const extra = ceiling - asp;
+                const payable = fare + extra;
+                const discountPct = asp > 0 ? ((asp - payable) / asp * 100) : 0;
 
                 return (
                   <tr key={month} className="border-b border-slate-100 hover:bg-slate-50 transition">
@@ -209,14 +215,20 @@ export default function App() {
                     <td className="text-right p-3 text-slate-600 font-medium tracking-tight">
                       {isLaunched ? `₹${asp.toLocaleString()}` : "—"}
                     </td>
+                    <td className="text-right p-3 text-slate-500 font-medium">
+                      {isLaunched ? `₹${fare.toLocaleString()}` : "—"}
+                    </td>
                     <td className="text-right p-3 text-slate-900 font-bold tracking-tight">
                       {isLaunched ? `₹${ceiling.toLocaleString()}` : "—"}
                     </td>
-                    <td className="text-right p-3 text-slate-600">
-                      {isLaunched ? `₹${gapRs.toLocaleString()}` : "—"}
+                    <td className={`text-right p-3 font-medium ${isLaunched ? (extra >= 0 ? 'text-green-600' : 'text-red-600') : 'text-slate-300'}`}>
+                      {isLaunched ? `₹${extra.toLocaleString()}` : "—"}
                     </td>
-                    <td className={`text-right p-3 ${isLaunched ? getGapColor(gapPct) : "text-slate-300"}`}>
-                      {isLaunched ? `${gapPct >= 0 ? '+' : ''}${gapPct.toFixed(1)}%` : "—"}
+                    <td className="text-right p-3 text-blue-700 font-bold tracking-tight">
+                      {isLaunched ? `₹${payable.toLocaleString()}` : "—"}
+                    </td>
+                    <td className={`text-right p-3 font-black ${isLaunched ? (discountPct >= 0 ? 'text-green-600' : 'text-red-600') : 'text-slate-300'}`}>
+                      {isLaunched ? `${discountPct >= 0 ? '+' : ''}${discountPct.toFixed(1)}%` : "—"}
                     </td>
                   </tr>
                 );
