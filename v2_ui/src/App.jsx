@@ -228,64 +228,6 @@ export default function App() {
     );
   };
 
-  const renderForwardProjection = () => {
-    if (loading || !historicalData) return null;
-
-    return (
-      <div className="mt-8">
-        <div className="flex items-center gap-2 mb-6">
-          <BarChart3 className="w-6 h-6 text-blue-600" />
-          <h2 className="text-2xl font-bold text-slate-900">Forward Projection (Based on Current Inputs)</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {seatTypes.map(type => {
-            const data = historicalData[type.id];
-            if (!data) return null;
-            const totalSeats = data.seats.reduce((a, b) => a + b, 0);
-            const totalRevenue = data.revenue.reduce((a, b) => a + b, 0);
-            const avgAsp = totalSeats > 0 ? (totalRevenue / totalSeats) : 0;
-            const ceiling = type.fare + type.cap;
-
-            const weightedDelta = data.asp.reduce((acc, asp, i) => {
-              const delta = ((ceiling - asp) / ceiling * 100);
-              return acc + (delta * (data.seats[i] || 0));
-            }, 0) / (totalSeats || 1);
-
-            const isSafe = weightedDelta >= 0;
-            const statusColor = weightedDelta >= 0 ? 'text-green-600' : (weightedDelta > -5 ? 'text-amber-600' : 'text-red-600');
-            const statusText = isSafe ? "Safe (No loss)" : "Risk of loss";
-            const recColor = isSafe ? "text-green-600" : "text-amber-600";
-
-            return (
-              <div key={type.id} className="bg-slate-900 rounded-xl p-5 border border-slate-700 shadow-xl overflow-hidden relative">
-                <div className="absolute top-0 left-0 w-1 h-full" style={{ backgroundColor: type.color }}></div>
-                <h3 className="text-base font-bold mb-4" style={{ color: type.color }}>{type.id}</h3>
-
-                <div className="space-y-2 text-[11px]">
-                  <div className="flex justify-between items-center border-b border-slate-800 pb-1.5">
-                    <span className="text-slate-400">Avg OTA ASP</span>
-                    <span className="font-semibold" style={{ color: type.color }}>₹{Math.round(avgAsp).toLocaleString()}</span>
-                  </div>
-                  <div className="flex justify-between items-center border-b border-slate-800 pb-1.5">
-                    <span className="text-slate-400">Computed Ceiling</span>
-                    <span className="text-yellow-200 font-bold">₹{ceiling.toLocaleString()}</span>
-                  </div>
-                  <div className="flex justify-between items-center bg-slate-800/50 p-2 rounded mt-2">
-                    <span className="text-slate-300 font-medium">Weighted Delta</span>
-                    <span className={`font-bold text-lg ${statusColor}`}>{weightedDelta > 0 ? '+' : ''}{weightedDelta.toFixed(1)}%</span>
-                  </div>
-                </div>
-
-                <p className={`mt-3 text-[10px] font-medium ${recColor} italic`}>
-                  {isSafe ? "doing good" : "⚠️ Consider raising fare"}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 p-6 font-sans">
@@ -394,10 +336,9 @@ export default function App() {
           </div>
         </div>
 
-        {/* Condensed Table and Projections */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+        {/* Condensed Table Comparison */}
+        <div className="w-full">
           {renderCompactTable()}
-          {renderForwardProjection()}
         </div>
 
         {/* Footer */}
