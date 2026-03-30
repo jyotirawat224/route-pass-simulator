@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv
+venv/
+ENV/
+env/
+.env
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React Build (WE WANT TO PUSH THIS)
+# v2_ui/dist is NOT ignored because we serve it from api.py
+
+# OS
+.DS_Store
+Thumbs.db

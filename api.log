@@ -1,0 +1,51 @@
+/Users/Work/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+INFO:     Started server process [15920]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:55407 - "GET /api/historical-data?corridor=Gurugram%3C%3EDehradun HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55412 - "GET /api/historical-data?corridor=Delhi%3C-%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55417 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55437 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55441 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55466 - "GET /api/historical-data?corridor=Chennai%3C%3ECoimbatore HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55476 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55483 - "GET /api/historical-data?corridor=Chennai%3C%3ECoimbatore HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55496 - "GET /api/historical-data?corridor=Delhi%3C%3EDehradun HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55548 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55553 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55599 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55603 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55614 - "GET /api/historical-data?corridor=Delhi%3C%3EAmritsar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55636 - "GET /api/historical-data?corridor=Delhi%3C%3EDehradun HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55679 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55683 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55717 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55721 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55725 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55729 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55753 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55757 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55767 - "GET /api/historical-data?corridor=Delhi%3C%3EDehradun HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55779 - "GET /api/historical-data?corridor=Bangalore%3C%3EHyderabad HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55884 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55884 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56133 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56153 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56160 - "GET /api/historical-data?corridor=Delhi%3C%3EDehradun HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56167 - "GET /api/historical-data?corridor=Delhi%3C-%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58042 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58074 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58710 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58878 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58965 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58970 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59669 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59673 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59686 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59690 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59728 - "GET /api/historical-data?corridor=Delhi%3C%3EDehradun HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59763 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59767 - "GET /api/historical-data?corridor=Delhi%3C%3EJaipur HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59779 - "GET /api/historical-data?corridor=Delhi%3C%3EDehradun HTTP/1.1" 200 OK

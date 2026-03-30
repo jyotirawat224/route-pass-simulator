@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: route-pass-simulator-v2
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python api.py"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.12
