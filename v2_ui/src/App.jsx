@@ -277,7 +277,7 @@ export default function App() {
                 </div>
 
                 <p className={`mt-3 text-[10px] font-medium ${recColor} italic`}>
-                  {isSafe ? "✅ Ceiling protected from losses" : "⚠️ Consider raising fare"}
+                  {isSafe ? "doing good" : "⚠️ Consider raising fare"}
                 </p>
               </div>
             );
