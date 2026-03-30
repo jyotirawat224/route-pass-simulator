@@ -403,9 +403,9 @@ export default function App() {
         {/* Footer */}
         <div className="mt-16 pt-8 border-t border-slate-200 pb-10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-[11px] font-bold text-slate-500">
-              <div className="text-blue-600 uppercase tracking-tighter mb-0.5">jyotirawat@zingbus.com</div>
-              <div className="text-slate-400">ANALYTICS</div>
+            <div className="text-[11px] font-bold text-slate-400">
+              <div className="mb-0.5">jyotirawat@zingbus.com</div>
+              <div>ANALYTICS</div>
             </div>
             <div className="flex items-center gap-6 text-[10px] font-bold text-slate-400">
               <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-600"></span> Critical Gap</div>
