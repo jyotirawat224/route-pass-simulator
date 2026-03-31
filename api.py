@@ -12,6 +12,13 @@ from fastapi.middleware.gzip import GZipMiddleware
 app = FastAPI()
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 
+@app.get("/api/health")
+def health_check():
+    """Lightweight endpoint for keep-alive pings."""
+    return {"status": "ok"}
+
+
+
 # Get the path to the React build directory
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DIST_DIR = os.path.join(BASE_DIR, "v2_ui", "dist")
