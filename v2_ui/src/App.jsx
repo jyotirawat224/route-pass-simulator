@@ -217,16 +217,16 @@ export default function App() {
         </div>
 
         <div className="overflow-x-auto border border-slate-200 rounded-lg">
-          <table className="w-full text-xs border-collapse">
+          <table className="w-full text-xs border-collapse table-fixed">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200">
-                <th className="text-left p-3 font-bold text-slate-900 w-24 border-r border-slate-200">Month</th>
-                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200">OTA ASP</th>
-                <th className="text-right p-3 font-semibold text-slate-700 w-20 border-r border-slate-200">Fare</th>
-                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200">Ceiling Price</th>
-                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200">Extra (₹)</th>
-                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200">Payable Amount</th>
-                <th className="text-right p-3 font-semibold text-slate-700">Discount (%)</th>
+                <th className="text-left p-3 font-bold text-slate-900 border-r border-slate-200 w-[14.28%]">Month</th>
+                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">OTA ASP</th>
+                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Fare</th>
+                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Ceiling Price</th>
+                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Extra (₹)</th>
+                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Payable Amount</th>
+                <th className="text-right p-3 font-semibold text-slate-700 w-[14.28%]">Discount (%)</th>
               </tr>
             </thead>
             <tbody>
