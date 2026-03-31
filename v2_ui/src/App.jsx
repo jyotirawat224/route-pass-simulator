@@ -1,8 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
-} from 'recharts';
 import { TrendingUp, AlertCircle, BarChart3, Info, Loader2, ChevronDown, Search } from 'lucide-react';
+
+const TrendChart = React.lazy(() => import('./components/TrendChart'));
 
 export default function App() {
   const [availableCorridors, setAvailableCorridors] = useState([]);
@@ -127,57 +126,14 @@ export default function App() {
     );
 
     return (
-      <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-8 mb-12">
-        <div className="flex items-center gap-2 mb-8">
-          <BarChart3 className="w-6 h-6 text-blue-600" />
-          <h2 className="text-2xl font-bold text-slate-900">OTA ASP Performance (Category-wise)</h2>
+      <React.Suspense fallback={
+        <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-12 mb-12 flex flex-col items-center justify-center min-h-[400px]">
+          <Loader2 className="w-8 h-8 text-blue-400 animate-spin mb-4" />
+          <p className="text-slate-400 text-sm">Loading visualizer...</p>
         </div>
-
-        <div className="h-[400px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid stroke="#e2e8f0" vertical={false} strokeDasharray="0" />
-              <XAxis
-                dataKey="month"
-                axisLine={false}
-                tickLine={false}
-                tick={{ fill: '#64748b', fontSize: 11 }}
-                dy={10}
-              />
-              <YAxis
-                axisLine={false}
-                tickLine={false}
-                tick={{ fill: '#64748b', fontSize: 11 }}
-                label={{ value: 'Amount (₹)', angle: -90, position: 'insideLeft', offset: -5, fill: '#64748b', fontSize: 11 }}
-              />
-              <Tooltip
-                contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#f8fafc' }}
-                itemStyle={{ fontSize: '11px', fontWeight: 'bold' }}
-                formatter={(value, name) => {
-                  if (name.includes('Ceiling')) return null;
-                  return [value, name];
-                }}
-              />
-              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '10px', fontWeight: '600', paddingBottom: '20px' }} />
-
-              {seatTypes.map(type => (
-                <React.Fragment key={type.id}>
-                  <Line
-                    name={`${type.id} OTA ASP`}
-                    type="monotone"
-                    dataKey={`${type.id} OTA ASP`}
-                    stroke={type.color}
-                    strokeWidth={2.5}
-                    dot={{ r: 3, fill: type.color }}
-                    activeDot={{ r: 5 }}
-                    legendType="circle"
-                  />
-                </React.Fragment>
-              ))}
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+      }>
+        <TrendChart chartData={chartData} seatTypes={seatTypes} />
+      </React.Suspense>
     );
   };
 

@@ -7,7 +7,10 @@ import pandas as pd
 import json
 import os
 
+from fastapi.middleware.gzip import GZipMiddleware
+
 app = FastAPI()
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 # Get the path to the React build directory
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
