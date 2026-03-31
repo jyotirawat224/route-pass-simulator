@@ -182,15 +182,15 @@ export default function App() {
         </div>
 
         <div className="overflow-x-auto border border-slate-200 rounded-lg">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs border-collapse">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200">
-                <th className="text-left p-3 font-bold text-slate-900 w-24">Month</th>
-                <th className="text-right p-3 font-semibold text-slate-700">OTA ASP</th>
-                <th className="text-right p-3 font-semibold text-slate-700 w-20">Fare</th>
-                <th className="text-right p-3 font-semibold text-slate-700">Ceiling Price</th>
-                <th className="text-right p-3 font-semibold text-slate-700">Extra (₹)</th>
-                <th className="text-right p-3 font-semibold text-slate-700">Payable Amount</th>
+                <th className="text-left p-3 font-bold text-slate-900 w-24 border-r border-slate-200">Month</th>
+                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200">OTA ASP</th>
+                <th className="text-right p-3 font-semibold text-slate-700 w-20 border-r border-slate-200">Fare</th>
+                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200">Ceiling Price</th>
+                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200">Extra (₹)</th>
+                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200">Payable Amount</th>
                 <th className="text-right p-3 font-semibold text-slate-700">Discount (%)</th>
               </tr>
             </thead>
@@ -204,27 +204,27 @@ export default function App() {
                 const ceiling = type.fare + type.cap;
                 const isLaunched = asp > 0;
 
-                // New formulas
-                const extra = ceiling - asp;
+                // Updated formula: Extra = OTA ASP - Ceiling Price
+                const extra = asp - ceiling;
                 const payable = fare + extra;
                 const discountPct = asp > 0 ? ((asp - payable) / asp * 100) : 0;
 
                 return (
                   <tr key={month} className="border-b border-slate-100 hover:bg-slate-50 transition">
-                    <td className="p-3 font-bold text-slate-900 border-r border-slate-100">{month}</td>
-                    <td className="text-right p-3 text-slate-600 font-medium tracking-tight">
+                    <td className="p-3 font-bold text-slate-900 border-r border-slate-200">{month}</td>
+                    <td className="text-right p-3 text-slate-600 font-medium tracking-tight border-r border-slate-200">
                       {isLaunched ? `₹${asp.toLocaleString()}` : "—"}
                     </td>
-                    <td className="text-right p-3 text-slate-500 font-medium">
+                    <td className="text-right p-3 text-slate-500 font-medium border-r border-slate-200">
                       {isLaunched ? `₹${fare.toLocaleString()}` : "—"}
                     </td>
-                    <td className="text-right p-3 text-slate-900 font-bold tracking-tight">
+                    <td className="text-right p-3 text-slate-900 font-bold tracking-tight border-r border-slate-200">
                       {isLaunched ? `₹${ceiling.toLocaleString()}` : "—"}
                     </td>
-                    <td className={`text-right p-3 font-medium ${isLaunched ? (extra >= 0 ? 'text-green-600' : 'text-red-600') : 'text-slate-300'}`}>
+                    <td className={`text-right p-3 font-medium border-r border-slate-200 ${isLaunched ? (extra >= 0 ? 'text-green-600' : 'text-red-600') : 'text-slate-300'}`}>
                       {isLaunched ? `₹${extra.toLocaleString()}` : "—"}
                     </td>
-                    <td className="text-right p-3 text-blue-700 font-bold tracking-tight">
+                    <td className="text-right p-3 text-blue-700 font-bold tracking-tight border-r border-slate-200">
                       {isLaunched ? `₹${payable.toLocaleString()}` : "—"}
                     </td>
                     <td className={`text-right p-3 font-black ${isLaunched ? (discountPct >= 0 ? 'text-green-600' : 'text-red-600') : 'text-slate-300'}`}>
