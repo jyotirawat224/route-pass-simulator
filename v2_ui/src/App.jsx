@@ -218,17 +218,17 @@ export default function App() {
           </div>
         </div>
 
-        <div className="overflow-x-auto border border-slate-200 rounded-lg">
+        <div className="overflow-x-auto border border-slate-200 rounded-lg max-w-5xl mx-auto shadow-inner bg-slate-50/50">
           <table className="w-full text-xs border-collapse table-fixed">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200">
-                <th className="text-left p-3 font-bold text-slate-900 border-r border-slate-200 w-[14.28%]">Month</th>
-                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">OTA ASP</th>
-                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Fare</th>
-                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Ceiling Price</th>
-                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Extra (₹)</th>
-                <th className="text-right p-3 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Payable Amount</th>
-                <th className="text-right p-3 font-semibold text-slate-700 w-[14.28%]">Discount (%)</th>
+                <th className="text-center p-2.5 font-bold text-slate-900 border-r border-slate-200 w-[14.28%]">Month</th>
+                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">OTA ASP</th>
+                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Fare</th>
+                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Ceiling Price</th>
+                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Extra (₹)</th>
+                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Payable Amount</th>
+                <th className="text-center p-2.5 font-semibold text-slate-700 w-[14.28%]">Discount (%)</th>
               </tr>
             </thead>
             <tbody>
@@ -248,23 +248,23 @@ export default function App() {
 
                 return (
                   <tr key={month} className="border-b border-slate-100 hover:bg-slate-50 transition">
-                    <td className="p-3 font-bold text-slate-900 border-r border-slate-200">{month}</td>
-                    <td className="text-right p-3 text-slate-600 font-medium tracking-tight border-r border-slate-200">
+                    <td className="text-center p-2.5 font-bold text-slate-900 border-r border-slate-200">{month}</td>
+                    <td className="text-center p-2.5 text-slate-600 font-medium tracking-tight border-r border-slate-200">
                       {isLaunched ? `₹${asp.toLocaleString()}` : "—"}
                     </td>
-                    <td className="text-right p-3 text-slate-500 font-medium border-r border-slate-200">
+                    <td className="text-center p-2.5 text-slate-500 font-medium border-r border-slate-200">
                       {isLaunched ? `₹${fare.toLocaleString()}` : "—"}
                     </td>
-                    <td className="text-right p-3 text-slate-900 font-bold tracking-tight border-r border-slate-200">
+                    <td className="text-center p-2.5 text-slate-900 font-bold tracking-tight border-r border-slate-200">
                       {isLaunched ? `₹${ceiling.toLocaleString()}` : "—"}
                     </td>
-                    <td className={`text-right p-3 font-medium border-r border-slate-200 ${isLaunched ? (extra >= 0 ? 'text-green-600' : 'text-red-600') : 'text-slate-300'}`}>
+                    <td className={`text-center p-2.5 font-medium border-r border-slate-200 ${isLaunched ? (extra >= 0 ? 'text-green-600' : 'text-red-600') : 'text-slate-300'}`}>
                       {isLaunched ? `₹${extra.toLocaleString()}` : "—"}
                     </td>
-                    <td className="text-right p-3 text-blue-700 font-bold tracking-tight border-r border-slate-200">
+                    <td className="text-center p-2.5 text-blue-700 font-bold tracking-tight border-r border-slate-200">
                       {isLaunched ? `₹${payable.toLocaleString()}` : "—"}
                     </td>
-                    <td className={`text-right p-3 font-black ${isLaunched ? (discountPct >= 0 ? 'text-green-600' : 'text-red-600') : 'text-slate-300'}`}>
+                    <td className={`text-center p-2.5 font-black ${isLaunched ? (discountPct >= 0 ? 'text-green-600' : 'text-red-600') : 'text-slate-300'}`}>
                       {isLaunched ? `${discountPct >= 0 ? '+' : ''}${discountPct.toFixed(1)}%` : "—"}
                     </td>
                   </tr>
