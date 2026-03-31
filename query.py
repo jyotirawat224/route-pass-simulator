@@ -5,21 +5,19 @@ from datetime import datetime
 # Redash API Configuration (JSON endpoint)
 REDASH_JSON_URL = "http://reporter.zingmobility.com/api/queries/7590/results.json?api_key=K4CxhybRtBP5khDFpZE1VkHyfk9QRQKuWZ9yhRjP"
 
-# All corridors supported by the simulator (as defined in the Redash query results)
-CORRIDORS = [
-    'Delhi<>Dehradun',
-    'Delhi<>Lucknow',
-    'Bangalore<>Hyderabad',
-    'Hyderabad<>Visakhapatnam',
-    'Delhi<>Dharamshala',
-    'Pune<>Nagpur',
-    'Chennai<>Madurai',
-    'Chennai<>Coimbatore',
-    'Gurugram<>Dehradun',
-    'Delhi<>Amritsar',
-    'Chennai<>Bangalore',
-    'Delhi<>Jaipur'
-]
+# This function will now be called dynamically
+def get_all_corridors() -> list:
+    """Extract unique corridors from the cached Redash data."""
+    global _cache
+    
+    # If cache is empty, trigger a fetch
+    if _cache["data"] is None:
+        fetch_ota_asp("Delhi<>Jaipur") # Trigger initial pull
+        
+    if _cache["data"] is not None:
+        return sorted(_cache["data"]['corridor'].unique().tolist())
+    
+    return []
 
 # Global in-memory cache to avoid re-fetching data from Redash on every click
 _cache = {

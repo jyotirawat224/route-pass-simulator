@@ -5,22 +5,28 @@ import {
 import { TrendingUp, AlertCircle, BarChart3, Info, Loader2, ChevronDown } from 'lucide-react';
 
 export default function App() {
-  const availableCorridors = [
-    'Delhi<>Dehradun',
-    'Delhi<>Lucknow',
-    'Bangalore<>Hyderabad',
-    'Hyderabad<>Visakhapatnam',
-    'Delhi<>Dharamshala',
-    'Pune<>Nagpur',
-    'Chennai<>Madurai',
-    'Chennai<>Coimbatore',
-    'Gurugram<>Dehradun',
-    'Delhi<>Amritsar',
-    'Chennai<>Bangalore',
-    'Delhi<>Jaipur'
-  ];
-
+  const [availableCorridors, setAvailableCorridors] = useState([]);
   const [selectedCorridor, setSelectedCorridor] = useState('Delhi<>Jaipur');
+
+  // Fetch dynamic corridor list on mount
+  useEffect(() => {
+    async function fetchCorridors() {
+      try {
+        const response = await fetch('/api/corridors');
+        const result = await response.json();
+        if (result.corridors) {
+          setAvailableCorridors(result.corridors);
+          // Set initial corridor if currently selected one isn't in the list
+          if (result.corridors.length > 0 && !result.corridors.includes(selectedCorridor)) {
+            setSelectedCorridor(result.corridors[0]);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch corridors", err);
+      }
+    }
+    fetchCorridors();
+  }, []);
   const [fareSeater, setFareSeater] = useState(300);
   const [fareShared, setFareShared] = useState(450);
   const [fareSingle, setFareSingle] = useState(600);

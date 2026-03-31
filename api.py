@@ -22,6 +22,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/api/corridors")
+def get_corridors():
+    """Return the unique list of corridors available in the Redash data."""
+    try:
+        corridors = query.get_all_corridors()
+        return {"corridors": corridors}
+    except Exception as e:
+        return {"error": str(e)}
+
 @app.get("/api/historical-data")
 def get_historical_data(corridor: str = Query(..., description="The corridor name")):
     try:
