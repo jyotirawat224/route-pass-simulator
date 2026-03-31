@@ -172,17 +172,6 @@ export default function App() {
                     activeDot={{ r: 5 }}
                     legendType="circle"
                   />
-                  <Line
-                    name={`${type.id} Ceiling`}
-                    type="monotone"
-                    dataKey={`${type.id} Ceiling`}
-                    stroke={type.color}
-                    strokeWidth={2}
-                    strokeDasharray="3 3"
-                    dot={false}
-                    activeDot={false}
-                    legendType="none"
-                  />
                 </React.Fragment>
               ))}
             </LineChart>
@@ -389,23 +378,7 @@ export default function App() {
           </div>
 
           <div className="lg:col-span-3">
-            {/* Small Metric Cards Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              {seatTypes.map(type => (
-                <div key={type.id} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm relative overflow-hidden group hover:border-blue-200 transition">
-                  <div className="absolute top-0 right-0 w-16 h-16 opacity-5 group-hover:opacity-10 transition">
-                    <TrendingUp className="w-full h-full text-blue-900" />
-                  </div>
-                  <h4 className="text-[10px] uppercase font-bold text-slate-400 mb-1">{type.id} Ceiling</h4>
-                  <div className="text-3xl font-black text-slate-900 leading-tight">₹{(type.fare + type.cap).toLocaleString()}</div>
-                  <div className="mt-2 flex items-center gap-1.5">
-                    <span className="text-[9px] font-bold text-slate-500">Fare ₹{type.fare}</span>
-                    <span className="text-slate-300">/</span>
-                    <span className="text-[9px] font-bold text-slate-500">Cap ₹{type.cap}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {/* Metric Cards removed as they were showing Ceiling info */}
 
             {/* Trend Chart */}
             {renderTrendChart()}
