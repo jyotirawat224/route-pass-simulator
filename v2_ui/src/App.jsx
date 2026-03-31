@@ -425,9 +425,7 @@ export default function App() {
               <div>ANALYTICS</div>
             </div>
             <div className="flex items-center gap-6 text-[10px] font-bold text-slate-400">
-              <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-600"></span> Critical Gap</div>
-              <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-amber-600"></span> Warning Gap</div>
-              <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-green-600"></span> Healthy Gap</div>
+              {/* Gap legend removed as it is no longer relevant for the current ASP-focused dashboard */}
             </div>
           </div>
         </div>
