@@ -204,8 +204,8 @@ export default function App() {
                 const ceiling = type.fare + type.cap;
                 const isLaunched = asp > 0;
 
-                // Updated formula: Extra = OTA ASP - Ceiling Price
-                const extra = asp - ceiling;
+                // Updated formula with condition
+                const extra = asp > ceiling ? (asp - ceiling) : 0;
                 const payable = fare + extra;
                 const discountPct = asp > 0 ? ((asp - payable) / asp * 100) : 0;
 
