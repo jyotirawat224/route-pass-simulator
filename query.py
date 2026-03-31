@@ -12,7 +12,7 @@ def get_all_corridors() -> list:
     
     # If cache is empty, trigger a fetch
     if _cache["data"] is None:
-        fetch_ota_asp("Delhi<>Jaipur") # Trigger initial pull
+        fetch_ota_asp("Delhi<>Dehradun") # Trigger initial pull
         
     if _cache["data"] is not None:
         return sorted(_cache["data"]['corridor'].unique().tolist())

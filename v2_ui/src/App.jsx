@@ -6,7 +6,7 @@ import { TrendingUp, AlertCircle, BarChart3, Info, Loader2, ChevronDown } from '
 
 export default function App() {
   const [availableCorridors, setAvailableCorridors] = useState([]);
-  const [selectedCorridor, setSelectedCorridor] = useState('Delhi<>Jaipur');
+  const [selectedCorridor, setSelectedCorridor] = useState('Delhi<>Dehradun');
 
   // Fetch dynamic corridor list on mount
   useEffect(() => {
