@@ -181,7 +181,7 @@ export default function App() {
                     strokeDasharray="3 3"
                     dot={false}
                     activeDot={false}
-                    legendType="plainline"
+                    legendType="none"
                   />
                 </React.Fragment>
               ))}
