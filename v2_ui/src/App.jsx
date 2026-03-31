@@ -98,8 +98,6 @@ export default function App() {
       seatTypes.forEach(type => {
         const asp = historicalData[type.id]?.asp[i] || 0;
         entry[`${type.id} OTA ASP`] = asp;
-        // Don't show ceiling if context (ASP) is missing (indicates unlaunched month)
-        entry[`${type.id} Ceiling`] = asp > 0 ? (type.fare + type.cap) : null;
       });
       return entry;
     });
