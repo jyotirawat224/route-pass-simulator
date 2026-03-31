@@ -153,20 +153,35 @@ export default function App() {
               <Tooltip
                 contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#f8fafc' }}
                 itemStyle={{ fontSize: '11px', fontWeight: 'bold' }}
+                formatter={(value, name) => {
+                  if (name.includes('Ceiling')) return null;
+                  return [value, name];
+                }}
               />
               <Legend verticalAlign="top" height={36} iconType="circle" wrapperStyle={{ fontSize: '10px', fontWeight: '600', paddingBottom: '20px' }} />
 
               {seatTypes.map(type => (
-                <Line
-                  key={type.id}
-                  name={`${type.id} OTA ASP`}
-                  type="monotone"
-                  dataKey={`${type.id} OTA ASP`}
-                  stroke={type.color}
-                  strokeWidth={2.5}
-                  dot={{ r: 3, fill: type.color }}
-                  activeDot={{ r: 5 }}
-                />
+                <React.Fragment key={type.id}>
+                  <Line
+                    name={`${type.id} OTA ASP`}
+                    type="monotone"
+                    dataKey={`${type.id} OTA ASP`}
+                    stroke={type.color}
+                    strokeWidth={2.5}
+                    dot={{ r: 3, fill: type.color }}
+                    activeDot={{ r: 5 }}
+                  />
+                  <Line
+                    name={`${type.id} Ceiling`}
+                    type="monotone"
+                    dataKey={`${type.id} Ceiling`}
+                    stroke={type.color}
+                    strokeWidth={2}
+                    strokeDasharray="3 3"
+                    dot={false}
+                    activeDot={false}
+                  />
+                </React.Fragment>
               ))}
             </LineChart>
           </ResponsiveContainer>
