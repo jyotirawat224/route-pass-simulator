@@ -40,17 +40,29 @@ const TrendChart = ({ chartData, seatTypes }) => {
                         <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '10px', fontWeight: '600', paddingBottom: '20px' }} />
 
                         {seatTypes.map(type => (
-                            <Line
-                                key={type.id}
-                                name={`${type.id} OTA ASP`}
-                                type="monotone"
-                                dataKey={`${type.id} OTA ASP`}
-                                stroke={type.color}
-                                strokeWidth={2.5}
-                                dot={{ r: 3, fill: type.color }}
-                                activeDot={{ r: 5 }}
-                                legendType="circle"
-                            />
+                            <React.Fragment key={type.id}>
+                                <Line
+                                    name={`${type.id} OTA ASP`}
+                                    type="monotone"
+                                    dataKey={`${type.id} OTA ASP`}
+                                    stroke={type.color}
+                                    strokeWidth={2.5}
+                                    dot={{ r: 3, fill: type.color }}
+                                    activeDot={{ r: 5 }}
+                                    legendType="circle"
+                                />
+                                <Line
+                                    name={`${type.id} Ceiling`}
+                                    type="monotone"
+                                    dataKey={`${type.id} Ceiling`}
+                                    stroke={type.color}
+                                    strokeWidth={2}
+                                    strokeDasharray="3 3"
+                                    dot={false}
+                                    activeDot={false}
+                                    legendType="none"
+                                />
+                            </React.Fragment>
                         ))}
                     </LineChart>
                 </ResponsiveContainer>
