@@ -116,7 +116,7 @@ export default function App() {
       <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-8 mb-12">
         <div className="flex items-center gap-2 mb-8">
           <BarChart3 className="w-6 h-6 text-blue-600" />
-          <h2 className="text-2xl font-bold text-slate-900">OTA ASP Trend vs Input Ceiling Price</h2>
+          <h2 className="text-2xl font-bold text-slate-900">OTA ASP Performance (Category-wise)</h2>
         </div>
 
         <div className="h-[400px] w-full">
@@ -253,38 +253,43 @@ export default function App() {
             </div>
             <p className="text-slate-500 font-medium uppercase tracking-widest text-[10px]">Route Pass Pricing Strategy Dashboard</p>
           </div>
-          <div className="relative" ref={dropdownRef}>
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center justify-between w-64 bg-white border border-slate-200 p-3 rounded-lg shadow-sm text-sm font-bold text-slate-800 focus:outline-none cursor-pointer hover:bg-slate-50 transition"
-            >
-              <span>{selectedCorridor}</span>
-              <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-            </button>
-
-            {isDropdownOpen && (
-              <div className="absolute left-0 right-0 top-full mt-2 bg-white border border-slate-200 rounded-lg shadow-xl z-50 max-h-64 overflow-y-auto py-1 overflow-hidden transition-all duration-200 ease-out origin-top animate-in fade-in zoom-in-95">
-                {availableCorridors.map(corridor => (
-                  <button
-                    key={corridor}
-                    onClick={() => {
-                      setSelectedCorridor(corridor);
-                      setIsDropdownOpen(false);
-                    }}
-                    className={`w-full text-left px-5 py-3 text-xs transition duration-150 hover:bg-blue-50 ${selectedCorridor === corridor ? 'bg-blue-50 text-blue-700 font-bold border-l-4 border-blue-600' : 'text-slate-600 font-medium'
-                      }`}
-                  >
-                    {corridor}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
         </div>
 
         {/* Configuration Section */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-10">
           <div className="lg:col-span-1 space-y-4">
+            {/* Corridor Selector (Moved to Sidebar) */}
+            <div className="relative" ref={dropdownRef}>
+              <p className="text-slate-400 font-bold uppercase tracking-widest text-[9px] mb-2 px-1">Selected Corridor</p>
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center justify-between w-full bg-slate-900 border border-slate-700 p-3 rounded-lg shadow-xl text-xs font-bold text-white focus:outline-none cursor-pointer hover:bg-slate-800 transition mb-4"
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
+                  <span>{selectedCorridor}</span>
+                </div>
+                <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isDropdownOpen && (
+                <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-2xl z-[100] max-h-64 overflow-y-auto py-1 animate-in fade-in zoom-in-95 ring-4 ring-slate-900/5">
+                  {availableCorridors.map(corridor => (
+                    <button
+                      key={corridor}
+                      onClick={() => {
+                        setSelectedCorridor(corridor);
+                        setIsDropdownOpen(false);
+                      }}
+                      className={`w-full text-left px-5 py-3 text-[11px] transition duration-150 hover:bg-blue-50 ${selectedCorridor === corridor ? 'bg-blue-50 text-blue-700 font-bold border-l-4 border-blue-600' : 'text-slate-600 font-medium'
+                        }`}
+                    >
+                      {corridor}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <div className="bg-slate-900 text-white rounded-xl p-6 shadow-xl border border-slate-800">
               <h3 className="text-sm font-bold text-white mb-6 pb-2 border-b border-blue-500/30 flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-blue-400" /> Simulation Parameters
