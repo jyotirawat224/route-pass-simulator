@@ -2,11 +2,12 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
-import { TrendingUp, AlertCircle, BarChart3, Info, Loader2, ChevronDown } from 'lucide-react';
+import { TrendingUp, AlertCircle, BarChart3, Info, Loader2, ChevronDown, Search } from 'lucide-react';
 
 export default function App() {
   const [availableCorridors, setAvailableCorridors] = useState([]);
   const [selectedCorridor, setSelectedCorridor] = useState('Delhi<>Dehradun');
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Fetch dynamic corridor list on mount
   useEffect(() => {
@@ -279,20 +280,42 @@ export default function App() {
               </button>
 
               {isDropdownOpen && (
-                <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-2xl z-[100] max-h-64 overflow-y-auto py-1 animate-in fade-in zoom-in-95 ring-4 ring-slate-900/5">
-                  {availableCorridors.map(corridor => (
-                    <button
-                      key={corridor}
-                      onClick={() => {
-                        setSelectedCorridor(corridor);
-                        setIsDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-5 py-3 text-[11px] transition duration-150 hover:bg-blue-50 ${selectedCorridor === corridor ? 'bg-blue-50 text-blue-700 font-bold border-l-4 border-blue-600' : 'text-slate-600 font-medium'
-                        }`}
-                    >
-                      {corridor}
-                    </button>
-                  ))}
+                <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-2xl z-[100] max-h-80 flex flex-col animate-in fade-in zoom-in-95 ring-4 ring-slate-900/5">
+                  <div className="p-2 border-b border-slate-100 sticky top-0 bg-white z-10">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
+                      <input
+                        autoFocus
+                        type="text"
+                        placeholder="Search corridors..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full bg-slate-50 border border-slate-200 rounded-md py-2 pl-9 pr-3 text-[11px] focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition"
+                      />
+                    </div>
+                  </div>
+                  <div className="overflow-y-auto flex-1 py-1">
+                    {filteredCorridors.length > 0 ? (
+                      filteredCorridors.map(corridor => (
+                        <button
+                          key={corridor}
+                          onClick={() => {
+                            setSelectedCorridor(corridor);
+                            setIsDropdownOpen(false);
+                            setSearchTerm('');
+                          }}
+                          className={`w-full text-left px-5 py-3 text-[11px] transition duration-150 hover:bg-blue-50 ${selectedCorridor === corridor ? 'bg-blue-50 text-blue-700 font-bold border-l-4 border-blue-600' : 'text-slate-600 font-medium'
+                            }`}
+                        >
+                          {corridor}
+                        </button>
+                      ))
+                    ) : (
+                      <div className="px-5 py-4 text-[10px] text-slate-400 text-center font-medium italic">
+                        No corridors found matching "{searchTerm}"
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
