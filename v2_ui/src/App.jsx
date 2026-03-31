@@ -158,7 +158,7 @@ export default function App() {
                   return [value, name];
                 }}
               />
-              <Legend verticalAlign="top" height={36} iconType="circle" wrapperStyle={{ fontSize: '10px', fontWeight: '600', paddingBottom: '20px' }} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '10px', fontWeight: '600', paddingBottom: '20px' }} />
 
               {seatTypes.map(type => (
                 <React.Fragment key={type.id}>
@@ -170,6 +170,7 @@ export default function App() {
                     strokeWidth={2.5}
                     dot={{ r: 3, fill: type.color }}
                     activeDot={{ r: 5 }}
+                    legendType="circle"
                   />
                   <Line
                     name={`${type.id} Ceiling`}
@@ -180,6 +181,7 @@ export default function App() {
                     strokeDasharray="3 3"
                     dot={false}
                     activeDot={false}
+                    legendType="plainline"
                   />
                 </React.Fragment>
               ))}
