@@ -28,6 +28,13 @@ export default function App() {
     }
     fetchCorridors();
   }, []);
+
+  const filteredCorridors = useMemo(() => {
+    if (!searchTerm) return availableCorridors;
+    return availableCorridors.filter(c =>
+      c.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [availableCorridors, searchTerm]);
   const [fareSeater, setFareSeater] = useState(300);
   const [fareShared, setFareShared] = useState(450);
   const [fareSingle, setFareSingle] = useState(600);
