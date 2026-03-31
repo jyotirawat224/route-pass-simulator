@@ -155,10 +155,16 @@ export default function App() {
               <Legend verticalAlign="top" height={36} iconType="circle" wrapperStyle={{ fontSize: '10px', fontWeight: '600', paddingBottom: '20px' }} />
 
               {seatTypes.map(type => (
-                <React.Fragment key={type.id}>
-                  <Line name={`${type.id} OTA ASP`} type="monotone" dataKey={`${type.id} OTA ASP`} stroke={type.color} strokeWidth={2.5} dot={{ r: 3, fill: type.color }} activeDot={{ r: 5 }} />
-                  <Line name={`${type.id} Ceiling`} type="monotone" dataKey={`${type.id} Ceiling`} stroke={type.color} strokeWidth={2} strokeDasharray="3 3" dot={false} />
-                </React.Fragment>
+                <Line
+                  key={type.id}
+                  name={`${type.id} OTA ASP`}
+                  type="monotone"
+                  dataKey={`${type.id} OTA ASP`}
+                  stroke={type.color}
+                  strokeWidth={2.5}
+                  dot={{ r: 3, fill: type.color }}
+                  activeDot={{ r: 5 }}
+                />
               ))}
             </LineChart>
           </ResponsiveContainer>
