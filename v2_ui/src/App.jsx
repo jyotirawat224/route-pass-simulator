@@ -169,7 +169,7 @@ export default function App() {
               <tr className="bg-slate-50 border-b border-slate-200">
                 <th className="text-center p-2.5 font-bold text-slate-900 border-r border-slate-200 w-[12.5%]">Month</th>
                 <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">OTA ASP</th>
-                <th className="text-center p-2.5 font-bold text-blue-600 border-r border-slate-200 w-[12.5%]">Base Fare (1.12x)</th>
+                <th className="text-center p-2.5 font-bold text-blue-600 border-r border-slate-200 w-[12.5%]">Base Fare</th>
                 <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">Pass Fare</th>
                 <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">Ceiling Price</th>
                 <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">Extra (₹)</th>
@@ -224,9 +224,22 @@ export default function App() {
             </tbody>
           </table>
         </div>
+
+        {/* Logic Note */}
+        <div className="mt-4 flex flex-wrap gap-4 text-[10px] text-slate-500 font-medium">
+          <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-200">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+            <span className="text-slate-900 font-bold">Base Fare</span> = OTA ASP × 1.12
+          </div>
+          <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-200">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+            <span className="text-slate-900 font-bold">Discount %</span> = ((Base Fare - Payable Amt) / Base Fare) × 100
+          </div>
+        </div>
       </div>
     );
   };
+
 
 
   return (
