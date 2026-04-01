@@ -167,13 +167,14 @@ export default function App() {
           <table className="w-full text-xs border-collapse table-fixed">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200">
-                <th className="text-center p-2.5 font-bold text-slate-900 border-r border-slate-200 w-[14.28%]">Month</th>
-                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">OTA ASP</th>
-                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Fare</th>
-                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Ceiling Price</th>
-                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Extra (₹)</th>
-                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[14.28%]">Payable Amount</th>
-                <th className="text-center p-2.5 font-semibold text-slate-700 w-[14.28%]">Discount (%)</th>
+                <th className="text-center p-2.5 font-bold text-slate-900 border-r border-slate-200 w-[12.5%]">Month</th>
+                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">OTA ASP</th>
+                <th className="text-center p-2.5 font-bold text-blue-600 border-r border-slate-200 w-[12.5%]">Base Fare (1.12x)</th>
+                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">Pass Fare</th>
+                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">Ceiling Price</th>
+                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">Extra (₹)</th>
+                <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">Payable Amount</th>
+                <th className="text-center p-2.5 font-semibold text-slate-700 w-[12.5%]">Discount (%)</th>
               </tr>
             </thead>
             <tbody>
@@ -182,6 +183,7 @@ export default function App() {
                 const data = historicalData[type.id];
                 if (!data) return null;
                 const asp = data.asp[i] || 0;
+                const baseFare = asp * 1.12;
                 const fare = type.fare;
                 const ceiling = type.fare + type.cap;
                 const isLaunched = asp > 0;
@@ -189,13 +191,16 @@ export default function App() {
                 // Updated formula with condition
                 const extra = asp > ceiling ? (asp - ceiling) : 0;
                 const payable = fare + extra;
-                const discountPct = asp > 0 ? ((asp - payable) / asp * 100) : 0;
+                const discountPct = baseFare > 0 ? ((baseFare - payable) / baseFare * 100) : 0;
 
                 return (
                   <tr key={month} className="border-b border-slate-100 hover:bg-slate-50 transition">
                     <td className="text-center p-2.5 font-bold text-slate-900 border-r border-slate-200">{month}</td>
                     <td className="text-center p-2.5 text-slate-600 font-medium tracking-tight border-r border-slate-200">
                       {isLaunched ? `₹${asp.toLocaleString()}` : "—"}
+                    </td>
+                    <td className="text-center p-2.5 text-blue-600 font-bold tracking-tight border-r border-slate-200 bg-blue-50/30">
+                      {isLaunched ? `₹${Math.round(baseFare).toLocaleString()}` : "—"}
                     </td>
                     <td className="text-center p-2.5 text-slate-500 font-medium border-r border-slate-200">
                       {isLaunched ? `₹${fare.toLocaleString()}` : "—"}
@@ -213,6 +218,7 @@ export default function App() {
                       {isLaunched ? `${discountPct >= 0 ? '+' : ''}${discountPct.toFixed(1)}%` : "—"}
                     </td>
                   </tr>
+
                 );
               })}
             </tbody>
