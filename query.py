@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 
 # Redash API Configuration (JSON endpoint)
-REDASH_JSON_URL = "http://reporter.zingmobility.com/api/queries/7590/results.json?api_key=K4CxhybRtBP5khDFpZE1VkHyfk9QRQKuWZ9yhRjP"
+REDASH_JSON_URL = "https://reporter.zingmobility.com/api/queries/7590/results.json?api_key=K4CxhybRtBP5khDFpZE1VkHyfk9QRQKuWZ9yhRjP"
 
 # This function will now be called dynamically
 def get_all_corridors() -> list:
