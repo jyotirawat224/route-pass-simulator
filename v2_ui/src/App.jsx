@@ -188,8 +188,8 @@ export default function App() {
                 const ceiling = type.fare + type.cap;
                 const isLaunched = asp > 0;
 
-                // Updated formula with condition
-                const extra = asp > ceiling ? (asp - ceiling) : 0;
+                // Updated formula with condition - extra now uses baseFare
+                const extra = baseFare > ceiling ? (baseFare - ceiling) : 0;
                 const payable = fare + extra;
                 const discountPct = baseFare > 0 ? ((baseFare - payable) / baseFare * 100) : 0;
 
@@ -209,10 +209,10 @@ export default function App() {
                       {isLaunched ? `₹${ceiling.toLocaleString()}` : "—"}
                     </td>
                     <td className={`text-center p-2.5 font-medium border-r border-slate-200 ${isLaunched ? (extra >= 0 ? 'text-green-600' : 'text-red-600') : 'text-slate-300'}`}>
-                      {isLaunched ? `₹${extra.toLocaleString()}` : "—"}
+                      {isLaunched ? `₹${Math.round(extra).toLocaleString()}` : "—"}
                     </td>
                     <td className="text-center p-2.5 text-blue-700 font-bold tracking-tight border-r border-slate-200">
-                      {isLaunched ? `₹${payable.toLocaleString()}` : "—"}
+                      {isLaunched ? `₹${Math.round(payable).toLocaleString()}` : "—"}
                     </td>
                     <td className={`text-center p-2.5 font-black ${isLaunched ? (discountPct >= 0 ? 'text-green-600' : 'text-red-600') : 'text-slate-300'}`}>
                       {isLaunched ? `${discountPct >= 0 ? '+' : ''}${discountPct.toFixed(1)}%` : "—"}
@@ -232,10 +232,15 @@ export default function App() {
             <span className="text-slate-900 font-bold">Base Fare</span> = OTA ASP × 1.12
           </div>
           <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-200">
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+            <span className="text-slate-900 font-bold">Extra</span> = max(0, Base Fare - Ceiling Price)
+          </div>
+          <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-200">
             <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
             <span className="text-slate-900 font-bold">Discount %</span> = ((Base Fare - Payable Amt) / Base Fare) × 100
           </div>
         </div>
+
       </div>
     );
   };
