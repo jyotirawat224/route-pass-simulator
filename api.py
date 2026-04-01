@@ -12,10 +12,11 @@ from fastapi.middleware.gzip import GZipMiddleware
 app = FastAPI()
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 
-@app.get("/api/health")
+@app.api_route("/api/health", methods=["GET", "HEAD"])
 def health_check():
     """Lightweight endpoint for keep-alive pings."""
     return {"status": "ok"}
+
 
 
 
