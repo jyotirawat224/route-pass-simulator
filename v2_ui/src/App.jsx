@@ -169,7 +169,7 @@ export default function App() {
               <tr className="bg-slate-50 border-b border-slate-200">
                 <th className="text-center p-2.5 font-bold text-slate-900 border-r border-slate-200 w-[12.5%]">Month</th>
                 <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">OTA ASP</th>
-                <th className="text-center p-2.5 font-bold text-blue-600 border-r border-slate-200 w-[12.5%]">Base Fare</th>
+                <th className="text-center p-2.5 font-bold text-slate-900 border-r border-slate-200 w-[12.5%]">Base Fare</th>
                 <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">Pass Fare</th>
                 <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">Ceiling Price</th>
                 <th className="text-center p-2.5 font-semibold text-slate-700 border-r border-slate-200 w-[12.5%]">Extra (₹)</th>
@@ -199,9 +199,10 @@ export default function App() {
                     <td className="text-center p-2.5 text-slate-600 font-medium tracking-tight border-r border-slate-200">
                       {isLaunched ? `₹${asp.toLocaleString()}` : "—"}
                     </td>
-                    <td className="text-center p-2.5 text-blue-600 font-bold tracking-tight border-r border-slate-200 bg-blue-50/30">
+                    <td className="text-center p-2.5 text-slate-900 font-bold tracking-tight border-r border-slate-200 bg-slate-50/50">
                       {isLaunched ? `₹${Math.round(baseFare).toLocaleString()}` : "—"}
                     </td>
+
                     <td className="text-center p-2.5 text-slate-500 font-medium border-r border-slate-200">
                       {isLaunched ? `₹${fare.toLocaleString()}` : "—"}
                     </td>
